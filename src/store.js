@@ -218,7 +218,8 @@ sText = sText.replace(/text1/g, "text2");
         fnRemoveFromTable(state, { sTableName, oItem }) {
             state.oDatabase[sTableName][`data`] = state.oDatabase[sTableName][`data`].filter((oI) => oI.id != oItem.id)
         },
-
+    },
+    actions: {
         fnExportDatabase({ commit, state, dispatch, getters }) {
             fnSaveFile('tasks-database', JSON.stringify(state.oDatabase, null, 4))
         },
@@ -232,8 +233,7 @@ sText = sText.replace(/text1/g, "text2");
         fnImportRepos({ commit, state, dispatch, getters }, sData) {
             commit('fnUpdateRepos', JSON.parse(sData))
         },
-    },
-    actions: {
+
         fnGetFieldValue: ({ state, getters }) => (sFormName, sFieldName) => {
             return getters.fnGetFieldValue(sFormName, sFieldName)
         },
